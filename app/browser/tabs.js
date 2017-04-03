@@ -346,7 +346,16 @@ const api = {
         console.log('responsive')
       })
 
+      tab.on('save-password', (e, username, origin) => {
+        appActions.savePassword(username, origin, tabId)
+      })
+
+      tab.on('update-password', (e, username, origin) => {
+        appActions.updatePassword(username, origin, tabId)
+      })
+
       updateWebContents(tabId, tab)
+
       let tabValue = getTabValue(tabId)
       if (tabValue) {
         appActions.tabCreated(tabValue)

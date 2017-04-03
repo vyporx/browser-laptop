@@ -121,7 +121,9 @@ const appConstants = {
   APP_ON_GO_FORWARD: _,
   APP_ON_GO_TO_INDEX: _,
   APP_ON_GO_BACK_LONG: _,
-  APP_ON_GO_FORWARD_LONG: _
+  APP_ON_GO_FORWARD_LONG: _,
+  APP_SAVE_PASSWORD: _,
+  APP_UPDATE_PASSWORD: _
 }
 
 module.exports = mapValuesByKeys(appConstants)
