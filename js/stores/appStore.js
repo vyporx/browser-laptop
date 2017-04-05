@@ -255,7 +255,10 @@ class AppStore extends EventEmitter {
 
   emitChanges (emitFullState) {
     if (lastEmittedState) {
-      const d = diff(lastEmittedState, appState)
+      // diff and patch will make map out of order so toList() is to maintain
+      // sites map order
+      const diffAppState = appState.set('sites', appState.get('sites').toList())
+      const d = diff(lastEmittedState, diffAppState)
       if (!d.isEmpty()) {
         BrowserWindow.getAllWindows().forEach((wnd) =>
           wnd.webContents.send(messages.APP_STATE_CHANGE, { stateDiff: d.toJS() }))
@@ -471,6 +474,7 @@ const handleAppAction = (action) => {
         }
         appState = syncUtil.updateSiteCache(appState, siteDetail)
       })
+      appState = appState.set('sites', appState.get('sites').sort(siteUtil.siteSort))
       appState = aboutNewTabState.setSites(appState)
       appState = aboutHistoryState.setHistory(appState)
       break

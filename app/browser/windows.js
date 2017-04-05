@@ -11,7 +11,6 @@ const locale = require('../locale')
 const LocalShortcuts = require('../localShortcuts')
 const {makeImmutable} = require('../common/state/immutableUtil')
 const {getPinnedTabsByWindowId} = require('../common/state/tabState')
-const {siteSort} = require('../../js/state/siteUtil')
 const messages = require('../../js/constants/messages')
 const settings = require('../../js/constants/settings')
 const siteTags = require('../../js/constants/siteTags')
@@ -90,7 +89,7 @@ const updatePinnedTabs = (win) => {
   const sitesToAdd = pinnedSites.filter((site) =>
     !win.__alreadyPinnedSites.find((pinned) => pinned.equals(site)))
 
-  sitesToAdd.sort(siteSort).forEach((site) => {
+  sitesToAdd.forEach((site) => {
     win.__alreadyPinnedSites = win.__alreadyPinnedSites.add(site)
     appActions.createTabRequested({
       url: site.get('location'),
