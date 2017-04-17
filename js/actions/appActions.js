@@ -1277,6 +1277,14 @@ const appActions = {
       origin,
       tabId
     })
+  },
+
+  deletePasswordSite: function (origin) {
+    AppDispatcher.dispatch({
+      actionType: appConstants.APP_CHANGE_SITE_SETTING,
+      hostPattern: origin,
+      key: 'savePasswords'
+    })
   }
 }
 
