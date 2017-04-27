@@ -10,7 +10,7 @@ const appActions = require('../../../js/actions/appActions')
 const CryptoUtil = require('../../../js/lib/cryptoUtil')
 const locale = require('../../locale')
 const messages = require('../../../js/constants/messages')
-const tabs = require('../tabs')
+const {getWebContents} = require('../webContentsCache')
 const {makeImmutable} = require('../../common/state/immutableUtil')
 const Immutable = require('immutable')
 const {ipcMain} = require('electron')
@@ -115,7 +115,7 @@ const savePassword = (username, origin, tabId) => {
     })
   }
 
-  const webContents = tabs.getWebContents(tabId)
+  const webContents = getWebContents(tabId)
 
   passwordCallbacks[message] = (buttonIndex) => {
     delete passwordCallbacks[message]
@@ -161,7 +161,7 @@ const updatePassword = (username, origin, tabId) => {
     })
   }
 
-  const webContents = tabs.getWebContents(tabId)
+  const webContents = getWebContents(tabId)
 
   passwordCallbacks[message] = (buttonIndex) => {
     delete passwordCallbacks[message]
