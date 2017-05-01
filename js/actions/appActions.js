@@ -396,26 +396,6 @@ const appActions = {
   },
 
   /**
-   * Deletes login credentials
-   * @param {Object} passwordDetail - login details
-   */
-  deletePassword: function (passwordDetail) {
-    AppDispatcher.dispatch({
-      actionType: appConstants.APP_REMOVE_PASSWORD,
-      passwordDetail
-    })
-  },
-
-  /**
-   * Deletes all saved login credentials
-   */
-  clearPasswords: function () {
-    AppDispatcher.dispatch({
-      actionType: appConstants.APP_CLEAR_PASSWORDS
-    })
-  },
-
-  /**
    * Changes an application level setting
    * @param {string} key - The key name for the setting
    * @param {string} value - The value of the setting
@@ -1261,6 +1241,9 @@ const appActions = {
     })
   },
 
+  /*
+   * Handle 'save-password' event from muon
+   */
   savePassword: function (username, origin, tabId) {
     AppDispatcher.dispatch({
       actionType: appConstants.APP_SAVE_PASSWORD,
@@ -1270,6 +1253,9 @@ const appActions = {
     })
   },
 
+  /*
+   * Handle 'update-password' event from muon
+   */
   updatePassword: function (username, origin, tabId) {
     AppDispatcher.dispatch({
       actionType: appConstants.APP_UPDATE_PASSWORD,
@@ -1279,6 +1265,29 @@ const appActions = {
     })
   },
 
+  /**
+   * Deletes login credentials
+   * @param {Object} passwordDetail - login details
+   */
+  deletePassword: function (passwordDetail) {
+    AppDispatcher.dispatch({
+      actionType: appConstants.APP_REMOVE_PASSWORD,
+      passwordDetail
+    })
+  },
+
+  /**
+   * Deletes all saved login credentials
+   */
+  clearPasswords: function () {
+    AppDispatcher.dispatch({
+      actionType: appConstants.APP_CLEAR_PASSWORDS
+    })
+  },
+
+  /**
+   * Delete legacy "never saved password" list
+   */
   deletePasswordSite: function (origin) {
     AppDispatcher.dispatch({
       actionType: appConstants.APP_CHANGE_SITE_SETTING,

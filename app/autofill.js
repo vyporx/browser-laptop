@@ -57,6 +57,10 @@ module.exports.addLogin = (form) => {
   session.defaultSession.autofill.addLogin(form)
 }
 
+module.exports.updateLogin = (form) => {
+  session.defaultSession.autofill.updateLogin(form)
+}
+
 module.exports.removeLogin = (form) => {
   session.defaultSession.autofill.removeLogin(form)
 }

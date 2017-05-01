@@ -224,6 +224,13 @@ const aboutActions = {
     })
   },
 
+  deletePasswordSite: function (password) {
+    aboutActions.dispatchAction({
+      actionType: appConstants.APP_REMOVE_PASSWORD_SITE,
+      passwordDetail: password
+    })
+  },
+
   clearPasswords: function () {
     aboutActions.dispatchAction({
       actionType: appConstants.APP_CLEAR_PASSWORDS

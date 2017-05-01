@@ -414,6 +414,11 @@ const handleAppAction = (action) => {
     case appConstants.APP_REMOVE_PASSWORD:
       autofill.removeLogin(action.passwordDetail.toJS())
       break
+    case appConstants.APP_REMOVE_PASSWORD_SITE:
+      let newPasswordDetail = action.passwordDetail.toJS()
+      delete newPasswordDetail['blacklisted_by_user']
+      autofill.updateLogin(newPasswordDetail)
+      break
     case appConstants.APP_CLEAR_PASSWORDS:
       autofill.clearLogins()
       break

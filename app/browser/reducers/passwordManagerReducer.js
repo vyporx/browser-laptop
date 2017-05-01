@@ -189,14 +189,17 @@ const migrate = (state) => {
                                                password.get('authTag'),
                                                masterKey,
                                                password.get('iv'))
-      let form = {}
-      form['origin'] = password.get('origin')
-      form['signon_realm'] = password.get('origin') + '/'
-      form['action'] = password.get('action')
-      form['username'] = password.get('username')
-      form['password'] = decrypted
-      autofill.addLogin(form)
+      if (decrypted) {
+        let form = {}
+        form['origin'] = password.get('origin')
+        form['signon_realm'] = password.get('origin') + '/'
+        form['action'] = password.get('action')
+        form['username'] = password.get('username')
+        form['password'] = decrypted
+        autofill.addLogin(form)
+      }
     })
+    state = state.set('legacy_passwords', state.get('passwords'))
     state = state.set('passwords', new Immutable.List())
   }
   const allSiteSettings = state.get('siteSettings')

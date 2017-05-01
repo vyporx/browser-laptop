@@ -316,22 +316,6 @@ Sets the update status
 
 
 
-### deletePassword(passwordDetail) 
-
-Deletes login credentials
-
-**Parameters**
-
-**passwordDetail**: `Object`, login details
-
-
-
-### clearPasswords() 
-
-Deletes all saved login credentials
-
-
-
 ### changeSetting(key, value) 
 
 Changes an application level setting
@@ -1005,6 +989,28 @@ Go forward in a history for a given tab
 
 Notifies the app that a drop operation was cancelled
 because ESC was pressed.
+
+
+
+### deletePassword(passwordDetail) 
+
+Deletes login credentials
+
+**Parameters**
+
+**passwordDetail**: `Object`, login details
+
+
+
+### clearPasswords() 
+
+Deletes all saved login credentials
+
+
+
+### deletePasswordSite() 
+
+Delete legacy "never saved password" list
 
 
 
