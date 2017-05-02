@@ -177,13 +177,13 @@ const updatePassword = (username, origin, tabId) => {
 }
 
 const migrate = (state) => {
-  masterKey = masterKey || getMasterKey()
-  if (!masterKey) {
-    console.log('Could not access master password; aborting')
-    return
-  }
   const passwords = state.get('passwords')
   if (passwords.size) {
+    masterKey = masterKey || getMasterKey()
+    if (!masterKey) {
+      console.log('Could not access master password; aborting')
+      return
+    }
     passwords.forEach((password) => {
       let decrypted = CryptoUtil.decryptVerify(password.get('encryptedPassword'),
                                                password.get('authTag'),
@@ -199,7 +199,7 @@ const migrate = (state) => {
         autofill.addLogin(form)
       }
     })
-    state = state.set('legacy_passwords', state.get('passwords'))
+    state = state.set('legacyPasswords', state.get('passwords'))
     state = state.set('passwords', new Immutable.List())
   }
   const allSiteSettings = state.get('siteSettings')
